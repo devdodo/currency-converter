@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="eng">
+<head>
+    <meta charset="UTF-8">
+	<meta name="description" content="Currency converter designed and developed by Frank Adakole ameh with github account @devdodo, project inspired by Brad Traversy from Traversy media - the greatest developer on earth.">
+	<meta name="keywords" content="currency converter, naira, dollar, pound">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Stylesheets -->
+	<link rel="stylesheet" href="css/bootstrap.min.css"/>
+    
+	<title>Currency Converter by devdodo</title>
+
+    <style>
+        .output{
+            display: none;
+        }
+    </style>
+
+</head>
+<body class="bg-dark">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-6 mt-5 p-4 mx-auto bg-primary text-white rounded">
+                <h2 class="text-center">Currency Converter</h2>
+                <p class="text-center">Choose the currency to convert</p>
+                <select id="curruncySelect" class="form-control mb-2">
+                    <option>Select A currency to convert...</option>
+                    <option value="naira">Naira</option>
+                    <option value="dollar">Dollar</option>
+                    <option value="pounds">Pounds</option>
+                </select>
+                <input type="number" id="unitInput" class="form-control" placeholder="Enter Amount">
+                
+                <div class="output text-white mx-auto">
+                    <div class="mt-4 p-2 bg-danger rounded">
+                        <h5 id="firstCurrency"></h5>
+                        <span id="firstConvert"></span>
+                    </div>
+                    <div class="mt-2 p-2 bg-success rounded">
+                        <h5 id="secondCurrency"></h5>
+                        <span id="secondConvert"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const output          = document.querySelector('.output');
+        const unitInput       = document.querySelector('#unitInput');
+        const firstConvert    = document.querySelector('#firstConvert');
+        const secondConvert   = document.querySelector('#secondConvert');
+        const firstCurrency   = document.querySelector('#firstCurrency');
+        const secondCurrency  = document.querySelector('#secondCurrency');
+        const currencySelect  = document.querySelector('#curruncySelect');
+
+        const currencyList = ['Naira', 'Dollar', 'Pound'];
+
+        unitInput.addEventListener('change', () => {
+            const inputAmount = unitInput.value;
+
+            console.log("this is working");
+
+            // Check select button and convert amount
+            if(currencySelect.value == 'naira'){
+
+                // Change text of title element
+                firstCurrency.innerText = currencyList[1];
+                secondCurrency.innerText = currencyList[2];
+
+                // Convert if input option was selected
+                firstConvert.innerText = inputAmount * 0.0026;
+                secondConvert.innerText = inputAmount * 0.0020;
+
+            }else if(curruncySelect.value == 'dollar'){
+                
+                 // Change text of title element
+                 firstCurrency.innerText = currencyList[0];
+                secondCurrency.innerText = currencyList[2];
+
+                // Convert if input option was selected
+                firstConvert.innerText = inputAmount * (1/0.0026);
+                secondConvert.innerText = inputAmount * 0.76;
+                
+            }else if(curruncySelect.value == 'pounds'){
+
+                // Change text of title element
+                firstCurrency.innerText = currencyList[0];
+                secondCurrency.innerText = currencyList[1];
+
+                // Convert if input option was selected
+                firstConvert.innerText = inputAmount * (1/0.0020);
+                secondConvert.innerText = inputAmount * (1/0.76);
+
+            }
+
+
+            output.style.display = 'block';
+
+        });
+    </script>
+</body>
+</html>
